@@ -1,0 +1,13 @@
+<div>
+  <!-- referencia a un elemento(#) y nos ayuda para saber cuando se renderiza y aplicar ciertas propiedades-->
+  <div #wave></div>
+  <button (click)="playPause()">
+    <!-- @if (isPlaying()) {<span>Pause</span> }
+    @else{<span>Play</span>} -->
+
+    <!-- @if (isPlaying()) {Pause}
+    @else{Play} -->
+    {{ isPlaying() ? 'Pause' : 'Play' }}
+  </button>
+
+</div>

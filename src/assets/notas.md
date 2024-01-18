@@ -10,3 +10,9 @@ Son un artefacto en angular muy similar a los componentes y servicios. Tuberias 
 - Pipe para datos  cortos | date:'short'
 ## Directivas 
 Se usa para manipulación del DOM en forma directa. Directive  es el medio por el cual podemos manipular el DOM de forma directa.
+## RouterLinks
+Nos permite redireccionar de modo simple y sin recargar la pagina
+## Vistas anidadas (En anuglar se pueden compartir plantillas)
+Las paginas que sigan una misma estructura pueden usar una plantilla (layout) y se puede compartir esa plantilla. puede implementarse desde el routing, una vez implmentado en los hijos solo nos preocuparmeos por el contenido, porque toda la configuracion de la plantilla ya estara por defecto
+
+

@@ -22,7 +22,12 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    //este atributo me permite acortar las rutas de importaciones
+    "paths": {
+      "@shared/*":["./src/app/domains/shared/*"],
+      "@products/*":["./src/app/domains/products/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

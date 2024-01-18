@@ -40,7 +40,7 @@
     </div>
     <div class="flex items-center">
       <button class="p-2 border rounded relative" (click)="sideMenu()">
-        <div class="absolute -top-2 -left-2 rounded h-5 w-5 bg-gray-600 text-white text-xs">{{cart.length}}</div>
+        <div class="absolute -top-2 -left-2 rounded h-5 w-5 bg-gray-600 text-white text-xs">{{cart().length}}</div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -84,12 +84,16 @@
     </button>
   </div>
   <div class="pt-4 flex flex-col">
-    <div class="flex justify-between items-center space-y-2" *ngFor="let product of cart">
+    <div class="flex justify-between items-center space-y-2" *ngFor="let product of cart()">
       <div class="flex space-x-2 items-center">
-        <img class="w-6 h-6" [src]="product.image" [alt]="product.title">
+        <img class="w-6 h-6" [src]="product.images[0]" [alt]="product.title">
         <h3>{{product.title}}</h3>
       </div>
       <p>{{product.price}}</p>
+    </div>
+    <div>
+      <!-- Ejecutar una funcion en el template no es recomendable, los datos ya deben estar procesados, es ineficiente y una mala practica. Solo los signal son aceptados-->
+      <p>Total:  {{total()}}</p>
     </div>
   </div>
 </div>

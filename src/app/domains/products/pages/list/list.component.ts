@@ -1,8 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ProductComponent } from '../../components/product/product.component';
 import { CommonModule } from '@angular/common';
-import { Product } from '../../../shared/models/product.model';
-import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { Product } from '@shared/models/product.model';
+import { HeaderComponent } from '@shared/components/header/header.component';
+import { CartService } from '@shared/services/cart.service';
+import { ProductService } from '@shared/services/product.service';
 
 @Component({
   selector: 'app-list',
@@ -13,9 +15,10 @@ import { HeaderComponent } from '../../../shared/components/header/header.compon
 })
 export class ListComponent {
 products=signal<Product[]>([])
-cart=signal<Product[]>([])
-
-constructor(){//inicializamos las variables
+//cart=signal<Product[]>([]) Esto ya no es necesario porque ahora se delega la responsabilidad a CarService
+private cartService= inject(CartService);
+private productService= inject(ProductService);
+/* constructor(){//inicializamos las variables
 const initProducts:Product[]=[
   {
     id:Date.now(),
@@ -68,9 +71,18 @@ const initProducts:Product[]=[
   },
 ];
 this.products.set(initProducts)
-}
+} */
+//Ya no necesitariamos el constructor pq los productos se obienen en su servicio especificado
 
+ngOnInit() {
+  this.productService.getProducts()
+  .subscribe({
+    next: (products) =>{this.products.set(products)},
+    error: () =>{}
+  })
+}
 addToCart(product: Product){
-  this.cart.update(prevState => [...prevState, product])
+  //this.cart.update(prevState => [...prevState, product])
+  this.cartService.addToCart(product)
 }
 }
